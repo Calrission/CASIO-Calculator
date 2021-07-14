@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
             nowSysButton!!.setBackgroundColor(getColor(R.color.colorAccentButton))
         }
 
-        for (i in arrayListOf(num_0, num_1, num_2, num_3, num_4, num_5, num_6, num_7, num_8, num_9, procent))
+        for (i in arrayListOf(num_0, num_1, num_2, num_3, num_4, num_5, num_6, num_7, num_8, num_9, procent, dot))
             i.setOnClickListener(numClick)
 
         for (i in arrayListOf(deleny, minus, plus, multy))

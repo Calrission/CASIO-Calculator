@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBack"
-    tools:context=".MainActivity" >
+    tools:context=".MainActivity">
 
     <ImageView
         android:id="@+id/sun_panel"
@@ -410,8 +410,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:fontFamily="@font/archivo_narrow_bold"
-                    android:gravity="center"
                     android:foreground="?attr/selectableItemBackgroundBorderless"
+                    android:gravity="center"
                     android:text="1"
                     android:textColor="@color/colorText"
                     android:textSize="28sp" />
