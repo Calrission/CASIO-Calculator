@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="colorBack" format="color"/>
+    <attr name="colorBackItem" format="color"/>
+    <attr name="colorText" format="color"/>
+    <attr name="colorTextC" format="color"/>
+    <attr name="colorHint" format="color"/>
+    <attr name="colorAccent" format="color"/>
+    <attr name="colorAccentButton" format="color"/>
+    <attr name="colorPanelOutput" format="color"/>
+    <attr name="drawableOutput" format="reference"/>
+    <attr name="drawableSunPanel" format="reference"/>
+</resources>

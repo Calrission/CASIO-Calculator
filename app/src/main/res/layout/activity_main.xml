@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBack"
+    android:background="?attr/colorBack"
     tools:context=".MainActivity">
 
     <ImageView
@@ -16,7 +16,7 @@
         android:adjustViewBounds="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/tipo_sun_panels" />
+        app:srcCompat="?attr/drawableSunPanel" />
 
     <LinearLayout
         android:id="@+id/info"
@@ -35,7 +35,7 @@
             android:fontFamily="@font/russoone"
             android:letterSpacing="0.1"
             android:text="CASIO"
-            android:textColor="@color/colorText"
+            android:textColor="?attr/colorText"
             android:textSize="26sp" />
 
         <TextView
@@ -44,7 +44,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/archivo_narrow_regular"
             android:text="CALCULATOR"
-            android:textColor="@color/colorHint" />
+            android:textColor="?attr/colorHint" />
     </LinearLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -54,7 +54,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="18dp"
         android:layout_marginEnd="8dp"
-        android:background="@drawable/back_text_calc"
+        android:background="?attr/drawableOutput"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/info">
@@ -67,7 +67,7 @@
             android:layout_marginEnd="18dp"
             android:gravity="right"
             android:singleLine="true"
-            android:textColor="@color/colorHint"
+            android:textColor="?attr/colorHint"
             android:textSize="22sp"
             app:layout_constraintBottom_toTopOf="@+id/main_text"
             app:layout_constraintEnd_toEndOf="parent"
@@ -82,7 +82,7 @@
             android:fontFamily="@font/archivo_narrow_bold"
             android:gravity="right"
             android:singleLine="true"
-            android:textColor="@color/colorText"
+            android:textColor="?attr/colorText"
             android:textSize="50sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -118,7 +118,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                app:cardBackgroundColor="@color/colorAccent"
+                app:cardBackgroundColor="?attr/colorAccent"
                 app:cardCornerRadius="20dp"
                 app:cardElevation="0dp">
 
@@ -128,7 +128,7 @@
                     android:fontFamily="@font/archivo_narrow_bold"
                     android:gravity="center"
                     android:text="C"
-                    android:textColor="@color/black"
+                    android:textColor="?attr/colorTextC"
                     android:textSize="28sp" />
             </androidx.cardview.widget.CardView>
 
@@ -138,7 +138,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="8dp"
                 android:layout_weight="1"
-                app:cardBackgroundColor="@color/colorBackItem"
+                app:cardBackgroundColor="?attr/colorBackItem"
                 app:cardCornerRadius="20dp"
                 app:cardElevation="0dp">
 
@@ -148,6 +148,7 @@
                     android:layout_height="match_parent"
                     android:foreground="?attr/selectableItemBackgroundBorderless"
                     android:padding="18dp"
+                    app:tint="?attr/colorText"
                     app:srcCompat="@drawable/ic_baseline_arrow_back_24" />
             </androidx.cardview.widget.CardView>
 
@@ -157,7 +158,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="8dp"
                 android:layout_weight="1"
-                app:cardBackgroundColor="@color/colorBackItem"
+                app:cardBackgroundColor="?attr/colorBackItem"
                 app:cardCornerRadius="20dp"
                 app:cardElevation="0dp">
 
@@ -169,7 +170,7 @@
                     android:foreground="?attr/selectableItemBackgroundBorderless"
                     android:gravity="center"
                     android:text="%"
-                    android:textColor="@color/colorText"
+                    android:textColor="?attr/colorText"
                     android:textSize="28sp" />
             </androidx.cardview.widget.CardView>
 
@@ -186,12 +187,12 @@
                     android:id="@+id/deleny"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@color/colorBackItem"
+                    android:background="?attr/colorBackItem"
                     android:fontFamily="@font/archivo_narrow_bold"
                     android:foreground="?attr/selectableItemBackgroundBorderless"
                     android:gravity="center"
                     android:text="/"
-                    android:textColor="@color/colorText"
+                    android:textColor="?attr/colorText"
                     android:textSize="28sp" />
             </androidx.cardview.widget.CardView>
         </LinearLayout>
@@ -209,7 +210,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                app:cardBackgroundColor="@color/colorBackItem"
+                app:cardBackgroundColor="?attr/colorBackItem"
                 app:cardCornerRadius="20dp"
                 app:cardElevation="0dp">
 
@@ -221,7 +222,7 @@
                     android:foreground="?attr/selectableItemBackgroundBorderless"
                     android:gravity="center"
                     android:text="7"
-                    android:textColor="@color/colorText"
+                    android:textColor="?attr/colorText"
                     android:textSize="28sp" />
             </androidx.cardview.widget.CardView>
 
@@ -231,7 +232,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="8dp"
                 android:layout_weight="1"
-                app:cardBackgroundColor="@color/colorBackItem"
+                app:cardBackgroundColor="?attr/colorBackItem"
                 app:cardCornerRadius="20dp"
                 app:cardElevation="0dp">
 
@@ -243,7 +244,7 @@
                     android:foreground="?attr/selectableItemBackgroundBorderless"
                     android:gravity="center"
                     android:text="8"
-                    android:textColor="@color/colorText"
+                    android:textColor="?attr/colorText"
                     android:textSize="28sp" />
             </androidx.cardview.widget.CardView>
 
@@ -253,7 +254,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="8dp"
                 android:layout_weight="1"
-                app:cardBackgroundColor="@color/colorBackItem"
+                app:cardBackgroundColor="?attr/colorBackItem"
                 app:cardCornerRadius="20dp"
                 app:cardElevation="0dp">
 
@@ -265,7 +266,7 @@
                     android:foreground="?attr/selectableItemBackgroundBorderless"
                     android:gravity="center"
                     android:text="9"
-                    android:textColor="@color/colorText"
+                    android:textColor="?attr/colorText"
                     android:textSize="28sp" />
             </androidx.cardview.widget.CardView>
 
@@ -282,12 +283,12 @@
                     android:id="@+id/multy"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@color/colorBackItem"
+                    android:background="?attr/colorBackItem"
                     android:fontFamily="@font/archivo_narrow_bold"
                     android:foreground="?attr/selectableItemBackgroundBorderless"
                     android:gravity="center"
                     android:text="*"
-                    android:textColor="@color/colorText"
+                    android:textColor="?attr/colorText"
                     android:textSize="28sp" />
             </androidx.cardview.widget.CardView>
         </LinearLayout>
@@ -305,7 +306,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                app:cardBackgroundColor="@color/colorBackItem"
+                app:cardBackgroundColor="?attr/colorBackItem"
                 app:cardCornerRadius="20dp"
                 app:cardElevation="0dp">
 
@@ -317,7 +318,7 @@
                     android:foreground="?attr/selectableItemBackgroundBorderless"
                     android:gravity="center"
                     android:text="4"
-                    android:textColor="@color/colorText"
+                    android:textColor="?attr/colorText"
                     android:textSize="28sp" />
             </androidx.cardview.widget.CardView>
 
@@ -327,7 +328,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="8dp"
                 android:layout_weight="1"
-                app:cardBackgroundColor="@color/colorBackItem"
+                app:cardBackgroundColor="?attr/colorBackItem"
                 app:cardCornerRadius="20dp"
                 app:cardElevation="0dp">
 
@@ -339,7 +340,7 @@
                     android:foreground="?attr/selectableItemBackgroundBorderless"
                     android:gravity="center"
                     android:text="5"
-                    android:textColor="@color/colorText"
+                    android:textColor="?attr/colorText"
                     android:textSize="28sp" />
             </androidx.cardview.widget.CardView>
 
@@ -349,7 +350,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="8dp"
                 android:layout_weight="1"
-                app:cardBackgroundColor="@color/colorBackItem"
+                app:cardBackgroundColor="?attr/colorBackItem"
                 app:cardCornerRadius="20dp"
                 app:cardElevation="0dp">
 
@@ -361,7 +362,7 @@
                     android:foreground="?attr/selectableItemBackgroundBorderless"
                     android:gravity="center"
                     android:text="6"
-                    android:textColor="@color/colorText"
+                    android:textColor="?attr/colorText"
                     android:textSize="28sp" />
             </androidx.cardview.widget.CardView>
 
@@ -378,12 +379,12 @@
                     android:id="@+id/minus"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@color/colorBackItem"
+                    android:background="?attr/colorBackItem"
                     android:fontFamily="@font/archivo_narrow_bold"
                     android:foreground="?attr/selectableItemBackgroundBorderless"
                     android:gravity="center"
                     android:text="-"
-                    android:textColor="@color/colorText"
+                    android:textColor="?attr/colorText"
                     android:textSize="28sp" />
             </androidx.cardview.widget.CardView>
         </LinearLayout>
@@ -401,7 +402,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                app:cardBackgroundColor="@color/colorBackItem"
+                app:cardBackgroundColor="?attr/colorBackItem"
                 app:cardCornerRadius="20dp"
                 app:cardElevation="0dp">
 
@@ -413,7 +414,7 @@
                     android:foreground="?attr/selectableItemBackgroundBorderless"
                     android:gravity="center"
                     android:text="1"
-                    android:textColor="@color/colorText"
+                    android:textColor="?attr/colorText"
                     android:textSize="28sp" />
             </androidx.cardview.widget.CardView>
 
@@ -423,7 +424,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="8dp"
                 android:layout_weight="1"
-                app:cardBackgroundColor="@color/colorBackItem"
+                app:cardBackgroundColor="?attr/colorBackItem"
                 app:cardCornerRadius="20dp"
                 app:cardElevation="0dp">
 
@@ -435,7 +436,7 @@
                     android:foreground="?attr/selectableItemBackgroundBorderless"
                     android:gravity="center"
                     android:text="2"
-                    android:textColor="@color/colorText"
+                    android:textColor="?attr/colorText"
                     android:textSize="28sp" />
             </androidx.cardview.widget.CardView>
 
@@ -445,7 +446,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="8dp"
                 android:layout_weight="1"
-                app:cardBackgroundColor="@color/colorBackItem"
+                app:cardBackgroundColor="?attr/colorBackItem"
                 app:cardCornerRadius="20dp"
                 app:cardElevation="0dp">
 
@@ -457,7 +458,7 @@
                     android:foreground="?attr/selectableItemBackgroundBorderless"
                     android:gravity="center"
                     android:text="3"
-                    android:textColor="@color/colorText"
+                    android:textColor="?attr/colorText"
                     android:textSize="28sp" />
             </androidx.cardview.widget.CardView>
 
@@ -474,12 +475,12 @@
                     android:id="@+id/plus"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@color/colorBackItem"
+                    android:background="?attr/colorBackItem"
                     android:fontFamily="@font/archivo_narrow_bold"
                     android:foreground="?attr/selectableItemBackgroundBorderless"
                     android:gravity="center"
                     android:text="+"
-                    android:textColor="@color/colorText"
+                    android:textColor="?attr/colorText"
                     android:textSize="28sp" />
             </androidx.cardview.widget.CardView>
         </LinearLayout>
@@ -496,7 +497,7 @@
                 android:layout_width="8dp"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
-                app:cardBackgroundColor="@color/colorBackItem"
+                app:cardBackgroundColor="?attr/colorBackItem"
                 app:cardCornerRadius="20dp"
                 app:cardElevation="0dp">
 
@@ -508,7 +509,7 @@
                     android:foreground="?attr/selectableItemBackgroundBorderless"
                     android:gravity="center"
                     android:text="0"
-                    android:textColor="@color/colorText"
+                    android:textColor="?attr/colorText"
                     android:textSize="28sp" />
             </androidx.cardview.widget.CardView>
 
@@ -518,7 +519,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="8dp"
                 android:layout_weight="1"
-                app:cardBackgroundColor="@color/colorBackItem"
+                app:cardBackgroundColor="?attr/colorBackItem"
                 app:cardCornerRadius="20dp"
                 app:cardElevation="0dp">
 
@@ -530,7 +531,7 @@
                     android:foreground="?attr/selectableItemBackgroundBorderless"
                     android:gravity="center"
                     android:text="."
-                    android:textColor="@color/colorText"
+                    android:textColor="?attr/colorText"
                     android:textSize="28sp" />
             </androidx.cardview.widget.CardView>
 
@@ -547,12 +548,12 @@
                     android:id="@+id/so"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@color/colorBackItem"
+                    android:background="?attr/colorBackItem"
                     android:fontFamily="@font/archivo_narrow_bold"
                     android:foreground="?attr/selectableItemBackgroundBorderless"
                     android:gravity="center"
                     android:text="="
-                    android:textColor="@color/colorText"
+                    android:textColor="?attr/colorText"
                     android:textSize="28sp" />
             </androidx.cardview.widget.CardView>
         </LinearLayout>

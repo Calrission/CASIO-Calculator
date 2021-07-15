@@ -11,7 +11,18 @@
     <color name="colorBack">#2B2D3B</color>
     <color name="colorBackItem">#444C64</color>
     <color name="colorText">#FFF</color>
+    <color name="colorTextC">#000</color>
     <color name="colorHint">#797988</color>
     <color name="colorAccent">#FFB86A</color>
     <color name="colorAccentButton">#A37D57</color>
+    <color name="colorPanelOutput">#000</color>
+
+    <color name="colorBackLight">#EDE1CA</color>
+    <color name="colorBackItemLight">#DFD2C4</color>
+    <color name="colorTextLight">#000</color>
+    <color name="colorTextCLight">#FFF</color>
+    <color name="colorHintLight">#6A694E</color>
+    <color name="colorAccentLight">#D95825</color>
+    <color name="colorAccentButtonLight">#E08C61</color>
+    <color name="colorPanelOutputLight">#B7B798</color>
 </resources>

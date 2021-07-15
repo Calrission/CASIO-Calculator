@@ -1,9 +1,11 @@
 package com.example.calculator
 
+import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.cardview.widget.CardView
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
@@ -19,7 +21,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         textForNums = main_text
-
+        switchThemeMode(!getSharedPreferences("0", 0).getBoolean("night_mode", false))
         val numClick = View.OnClickListener{
             addNewChar((it as TextView).text.toString())
         }
@@ -65,6 +67,10 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        sun_panel.setOnClickListener {
+            switchThemeMode()
+        }
+
         delete_num.setOnClickListener {
             try {
                 val delete_char = textForNums.text.toString().last().toString()
@@ -80,5 +86,16 @@ class MainActivity : AppCompatActivity() {
 
     private fun addNewChar(char: String){
         textForNums.append(char)
+    }
+
+    private fun switchThemeMode(now_theme_night: Boolean = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES){
+        if (now_theme_night)
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        else
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+
+        getSharedPreferences("0", 0).edit()
+            .putBoolean("night_mode", !now_theme_night)
+            .apply()
     }
 }
