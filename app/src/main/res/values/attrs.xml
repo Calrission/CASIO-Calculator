@@ -10,4 +10,7 @@
     <attr name="colorPanelOutput" format="color"/>
     <attr name="drawableOutput" format="reference"/>
     <attr name="drawableSunPanel" format="reference"/>
+
+    <attr name="icon" format="reference"/>
+    <attr name="icon_round" format="reference"/>
 </resources>
