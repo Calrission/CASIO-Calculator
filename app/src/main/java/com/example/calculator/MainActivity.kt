@@ -79,6 +79,8 @@ class MainActivity : AppCompatActivity() {
 
             }
         }
+
+        loadState()
     }
 
     private fun toNormalNowButton(){
@@ -91,6 +93,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun switchThemeMode(now_theme_night: Boolean = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES){
+        saveState()
         if (now_theme_night)
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         else
@@ -99,5 +102,42 @@ class MainActivity : AppCompatActivity() {
         getSharedPreferences("0", 0).edit()
             .putBoolean("night_mode", !now_theme_night)
             .apply()
+    }
+
+    private fun saveState(){
+        val sh = getSharedPreferences("0", 0)
+        val theme_change = sh.getBoolean("theme_change", false)
+        if (!theme_change) {
+            sh.edit()
+                .putString("main_text", main_text.text.toString())
+                .putString("second_text", second_text.text.toString())
+                .putBoolean("theme_change", true)
+                .apply()
+            if (nowSysButton != null) {
+                sh.edit()
+                    .putInt("id_system_button", nowSysButton!!.id)
+                    .apply()
+            }
+        }
+    }
+
+    private fun loadState(){
+        val sh = getSharedPreferences("0", 0)
+        val theme_change = sh.getBoolean("theme_change", false)
+        if (theme_change) {
+            val main_text_value = sh.getString("main_text", "")
+            val second_text_value = sh.getString("second_text", "")
+            val id_system_button = sh.getInt("id_system_button", 0)
+            main_text.text = main_text_value
+            second_text.text = second_text_value
+            if (id_system_button != 0) {
+                val textView = findViewById<TextView>(id_system_button)
+                textView.setBackgroundColor(getColor(R.color.colorAccentButton))
+                nowSysButton = textView
+            }
+            sh.edit()
+                .putBoolean("theme_change", false)
+                .apply()
+        }
     }
 }
