@@ -3,6 +3,7 @@ package com.example.calculator
 import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.TypedValue
 import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatDelegate
@@ -29,7 +30,7 @@ class MainActivity : AppCompatActivity() {
             addNewChar((it as TextView).text.toString())
             toNormalNowButton()
             nowSysButton = it
-            nowSysButton!!.setBackgroundColor(getColor(R.color.colorAccentButton))
+            nowSysButton!!.setBackgroundColor(getColorAttr(R.attr.colorAccentButton))
         }
 
         for (i in arrayListOf(num_0, num_1, num_2, num_3, num_4, num_5, num_6, num_7, num_8, num_9, procent, dot))
@@ -75,9 +76,7 @@ class MainActivity : AppCompatActivity() {
                     main_text.text.toString().substring(0, main_text.text.toString().length - 1)
                 if (delete_char in arrayListOf("+", "-", "/", "*"))
                     toNormalNowButton()
-            }catch (e: Exception){
-
-            }
+            }catch (e: Exception){}
         }
 
         loadState()
@@ -85,11 +84,17 @@ class MainActivity : AppCompatActivity() {
 
     private fun toNormalNowButton(){
         if (nowSysButton != null)
-            nowSysButton!!.setBackgroundColor(getColor(R.color.colorBackItem))
+            nowSysButton!!.setBackgroundColor(getColorAttr(R.attr.colorBackItem))
     }
 
     private fun addNewChar(char: String){
         main_text.append(char)
+    }
+
+    private fun getColorAttr(id_color: Int): Int{
+        val value = TypedValue()
+        this.theme.resolveAttribute(id_color, value, true)
+        return value.data
     }
 
     private fun switchThemeMode(now_theme_night: Boolean = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES){
@@ -117,6 +122,10 @@ class MainActivity : AppCompatActivity() {
                 sh.edit()
                     .putInt("id_system_button", nowSysButton!!.id)
                     .apply()
+            }else{
+                sh.edit()
+                    .putInt("id_system_button", 0)
+                    .apply()
             }
         }
     }
@@ -132,11 +141,14 @@ class MainActivity : AppCompatActivity() {
             second_text.text = second_text_value
             if (id_system_button != 0) {
                 val textView = findViewById<TextView>(id_system_button)
-                textView.setBackgroundColor(getColor(R.color.colorAccentButton))
+                textView.setBackgroundColor(getColorAttr(R.attr.colorAccentButton))
                 nowSysButton = textView
             }
             sh.edit()
                 .putBoolean("theme_change", false)
+//                .putString("main_text", "")
+//                .putString("second_text", "")
+//                .putInt("id_system_button", 0)
                 .apply()
         }
     }
