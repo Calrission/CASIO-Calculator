@@ -1,9 +1,13 @@
-package com.example.calculator
+package com.example.calculator.screens
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
+import com.example.calculator.controllers.MainActivityController
+import com.example.calculator.R
 import com.example.calculator.databinding.ActivityMainBinding
+import com.example.calculator.common.getColorAttr
+import com.example.calculator.common.isDarkTheme
 import com.example.calculator.models.State
 import com.google.android.material.snackbar.Snackbar
 
@@ -12,31 +16,29 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private var nowOperationButton: TextView? = null
         set(value) {
-            if (field == null && value != null){
-                addNewChar(value.text.toString())
-            }else if (field != null && value != null) {
-                field!!.setBackgroundColor(getColorAttr(R.attr.colorBackItem))
-                binding.mainText.text = replaceOperation(value.text.toString(), field!!.text.toString())
+            if (field != null){
+                changeSelectOperationButton(nowOperationButton!!, false)
             }
             field = value
-            value?.setBackgroundColor(getColorAttr(R.attr.colorAccentButton))
+            field?.setBackgroundColor(getColorAttr(R.attr.colorAccentButton))
         }
 
-    private val controller by lazy { Controller(this) }
+    private val controller by lazy { MainActivityController(this) }
 
     private val numButtons by lazy {
         arrayListOf(
             binding.num0, binding.num1, binding.num2,
             binding.num3, binding.num4, binding.num5,
             binding.num6, binding.num7, binding.num8,
-            binding.num9, binding.procent, binding.dot
+            binding.num9
         )
     }
 
     private val operationButtons by lazy {
         arrayListOf(
             binding.deleny, binding.minus,
-            binding.plus, binding.multy
+            binding.plus, binding.multy,
+            binding.mod
         )
     }
 
@@ -47,18 +49,19 @@ class MainActivity : AppCompatActivity() {
         
         numButtons.forEach{ btn ->
             btn.setOnClickListener{
-                addNewChar(btn.text.toString())
+                controller.tapDigit(btn.text.toString().toInt())
             }
         }
         
         operationButtons.forEach{ btn ->
             btn.setOnClickListener{
+                controller.tapOperation(btn.text.toString())
                 nowOperationButton = btn
             }
         }
 
         binding.c.setOnClickListener {
-            clear()
+            controller.tapClear()
         }
 
         binding.cardSo.setOnClickListener {
@@ -70,43 +73,30 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.deleteNum.setOnClickListener {
-            deleteChar()
+            controller.tapRemove()
+        }
+
+        binding.dot.setOnClickListener {
+            controller.tapDot()
         }
 
         controller.initState()
     }
 
-    fun showResultCalc(result: Double){
+    fun showResultCalc(result: String){
         binding.secondText.text = binding.mainText.text.toString()
-        if (result == 0.0 || result % result.toInt().toDouble() == 0.0 ){
-            binding.mainText.text = result.toInt().toString()
-        }else{
-            binding.mainText.text = result.toString()
-        }
-        toNormalNowOperationButton()
+        binding.mainText.text = result
+        unselectOperationButton()
     }
 
-    private fun addNewChar(char: String){
-        binding.mainText.append(char)
-    }
-
-    private fun deleteChar(){
-        try {
-            val deleteChar = binding.mainText.text.toString().last().toString()
-            binding.mainText.text =
-                binding.mainText.text.toString().substring(0, binding.mainText.text.toString().length - 1)
-            if (deleteChar in arrayListOf("+", "-", "/", "*")) toNormalNowOperationButton()
-        }catch (_: Exception){}
-    }
-
-    private fun replaceOperation(newOperation: String, oldOperation: String): String {
-        return binding.mainText.text.toString().reversed().replaceFirst(oldOperation, newOperation).reversed()
-    }
-
-    private fun clear(){
+    fun clear(){
         binding.mainText.text = ""
         binding.secondText.text = ""
-        toNormalNowOperationButton()
+        unselectOperationButton()
+    }
+
+    fun setMainText(text: String){
+        binding.mainText.text = text
     }
 
     fun getState(): State{
@@ -124,7 +114,7 @@ class MainActivity : AppCompatActivity() {
             secondText.text = state.secondText
             if (state.idOperationButton != 0) {
                 val textView = findViewById<TextView>(state.idOperationButton)
-                textView.setBackgroundColor(getColorAttr(R.attr.colorAccentButton))
+                changeSelectOperationButton(textView, true)
                 nowOperationButton = textView
             }
             val nowDark = isDarkTheme()
@@ -137,10 +127,19 @@ class MainActivity : AppCompatActivity() {
         Snackbar.make(binding.root, error, Snackbar.LENGTH_SHORT).show()
     }
 
-    private fun toNormalNowOperationButton(){
+    private fun changeSelectOperationButton(button: TextView, isSelect: Boolean){
+        button.setBackgroundColor(getColorAttr(if (isSelect) R.attr.colorAccentButton else R.attr.colorBackItem))
+    }
+
+    fun unselectOperationButton(){
         if (nowOperationButton != null) {
-            nowOperationButton!!.setBackgroundColor(getColorAttr(R.attr.colorBackItem))
+            changeSelectOperationButton(nowOperationButton!!, false)
             nowOperationButton = null
         }
+    }
+
+    override fun onStop() {
+        controller.onStop()
+        super.onStop()
     }
 }

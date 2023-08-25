@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/colorBack"
-    tools:context=".MainActivity">
+    tools:context=".screens.MainActivity">
 
     <ImageView
         android:id="@+id/sun_panel"
@@ -168,7 +168,7 @@
                 app:cardElevation="0dp">
 
                 <TextView
-                    android:id="@+id/procent"
+                    android:id="@+id/mod"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:fontFamily="@font/archivo_narrow_bold"

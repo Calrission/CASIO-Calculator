@@ -1,4 +1,4 @@
-package com.example.calculator
+package com.example.calculator.common
 
 import android.content.res.Configuration
 import android.util.TypedValue
