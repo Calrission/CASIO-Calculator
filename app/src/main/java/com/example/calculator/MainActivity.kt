@@ -4,123 +4,134 @@ import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.TypedValue
-import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.cardview.widget.CardView
+import com.example.calculator.databinding.ActivityMainBinding
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.activity_main.*
-import net.objecthunter.exp4j.Expression
 import net.objecthunter.exp4j.ExpressionBuilder
 
 class MainActivity : AppCompatActivity() {
-    var nowSysButton: TextView? = null
+
+    private lateinit var binding: ActivityMainBinding
+    private var nowOperationButton: TextView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
-        switchThemeMode(!getSharedPreferences("0", 0).getBoolean("night_mode", false))
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         
-        val numClick = View.OnClickListener{
-            addNewChar((it as TextView).text.toString())
+        val numButtons = arrayListOf(
+            binding.num0, binding.num1, binding.num2,
+            binding.num3, binding.num4, binding.num5,
+            binding.num6, binding.num7, binding.num8,
+            binding.num9, binding.procent, binding.dot
+        )
+        
+        val operationButtons = arrayListOf(
+            binding.deleny, binding.minus,
+            binding.plus, binding.multy
+        )
+        
+        numButtons.forEach{ btn ->
+            btn.setOnClickListener{
+                addNewChar(btn.text.toString())
+            }
         }
-
-        val sysClick = View.OnClickListener {
-            addNewChar((it as TextView).text.toString())
-            toNormalNowButton()
-            nowSysButton = it
-            nowSysButton!!.setBackgroundColor(getColorAttr(R.attr.colorAccentButton))
-        }
-
-        for (i in arrayListOf(num_0, num_1, num_2, num_3, num_4, num_5, num_6, num_7, num_8, num_9, procent, dot))
-            i.setOnClickListener(numClick)
-
-        for (i in arrayListOf(deleny, minus, plus, multy))
-            i.setOnClickListener(sysClick)
-
-        c.setOnClickListener {
-            main_text.text = ""
-            second_text.text = ""
-            toNormalNowButton()
-        }
-
-        card_so.setOnClickListener {
-            try {
-                val match = if (main_text.text.isNotEmpty()) {
-                    ExpressionBuilder(main_text.text.toString()).build()
-                }else {
-                    ExpressionBuilder(second_text.text.toString()).build()
-                }
-                val result = match!!.evaluate()
-                second_text.text = main_text.text.toString()
-                if (".0" in result.toString()){
-                    main_text.text = result.toLong().toString()
-                }else{
-                    main_text.text = result.toString()
-                }
+        
+        operationButtons.forEach{ btn ->
+            btn.setOnClickListener{
+                addNewChar(btn.text.toString())
                 toNormalNowButton()
-            }catch (e: Exception){
-                Snackbar.make(so, "Ошибка!\n${e.message}", Snackbar.LENGTH_SHORT).show()
+                nowOperationButton = btn
+                nowOperationButton!!.setBackgroundColor(getColorAttr(R.attr.colorAccentButton))
             }
         }
 
-        sun_panel.setOnClickListener {
+        switchThemeMode(!getSharedPreferences("0", 0).getBoolean("night_mode", false))
+
+        binding.c.setOnClickListener {
+            binding.mainText.text = ""
+            binding.secondText.text = ""
+            toNormalNowButton()
+        }
+
+        binding.cardSo.setOnClickListener {
+            try {
+                val match = if (binding.mainText.text.isNotEmpty()) {
+                    ExpressionBuilder(binding.mainText.text.toString()).build()
+                }else {
+                    ExpressionBuilder(binding.secondText.text.toString()).build()
+                }
+                val result = match!!.evaluate()
+                binding.secondText.text = binding.mainText.text.toString()
+                if (".0" in result.toString()){
+                    binding.mainText.text = result.toLong().toString()
+                }else{
+                    binding.mainText.text = result.toString()
+                }
+                toNormalNowButton()
+            }catch (e: Exception){
+                Snackbar.make(binding.so, "Ошибка!\n${e.message}", Snackbar.LENGTH_SHORT).show()
+            }
+        }
+
+        binding.sunPanel.setOnClickListener {
             switchThemeMode()
         }
 
-        delete_num.setOnClickListener {
+        binding.deleteNum.setOnClickListener {
             try {
-                val delete_char = main_text.text.toString().last().toString()
-                main_text.text =
-                    main_text.text.toString().substring(0, main_text.text.toString().length - 1)
-                if (delete_char in arrayListOf("+", "-", "/", "*"))
-                    toNormalNowButton()
-            }catch (e: Exception){}
+                val deleteChar = binding.mainText.text.toString().last().toString()
+                binding.mainText.text =
+                    binding.mainText.text.toString().substring(0, binding.mainText.text.toString().length - 1)
+                if (deleteChar in arrayListOf("+", "-", "/", "*")) toNormalNowButton()
+            }catch (_: Exception){}
         }
 
         loadState()
     }
 
     private fun toNormalNowButton(){
-        if (nowSysButton != null)
-            nowSysButton!!.setBackgroundColor(getColorAttr(R.attr.colorBackItem))
+        if (nowOperationButton != null)
+            nowOperationButton!!.setBackgroundColor(getColorAttr(R.attr.colorBackItem))
     }
 
     private fun addNewChar(char: String){
-        main_text.append(char)
+        binding.mainText.append(char)
     }
 
-    private fun getColorAttr(id_color: Int): Int{
+    private fun getColorAttr(idColor: Int): Int{
         val value = TypedValue()
-        this.theme.resolveAttribute(id_color, value, true)
+        theme.resolveAttribute(idColor, value, true)
         return value.data
     }
 
-    private fun switchThemeMode(now_theme_night: Boolean = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES){
+    private fun switchThemeMode(
+        nowThemeNight: Boolean = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
+    ){
         saveState()
-        if (now_theme_night)
+        if (nowThemeNight)
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         else
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
 
         getSharedPreferences("0", 0).edit()
-            .putBoolean("night_mode", !now_theme_night)
+            .putBoolean("night_mode", !nowThemeNight)
             .apply()
     }
 
     private fun saveState(){
         val sh = getSharedPreferences("0", 0)
-        val theme_change = sh.getBoolean("theme_change", false)
-        if (!theme_change) {
+        val themeChange = sh.getBoolean("theme_change", false)
+        if (!themeChange) {
             sh.edit()
-                .putString("main_text", main_text.text.toString())
-                .putString("second_text", second_text.text.toString())
+                .putString("binding.mainText", binding.mainText.text.toString())
+                .putString("binding.secondText", binding.secondText.text.toString())
                 .putBoolean("theme_change", true)
                 .apply()
-            if (nowSysButton != null) {
+            if (nowOperationButton != null) {
                 sh.edit()
-                    .putInt("id_system_button", nowSysButton!!.id)
+                    .putInt("id_system_button", nowOperationButton!!.id)
                     .apply()
             }else{
                 sh.edit()
@@ -132,22 +143,22 @@ class MainActivity : AppCompatActivity() {
 
     private fun loadState(){
         val sh = getSharedPreferences("0", 0)
-        val theme_change = sh.getBoolean("theme_change", false)
-        if (theme_change) {
-            val main_text_value = sh.getString("main_text", "")
-            val second_text_value = sh.getString("second_text", "")
-            val id_system_button = sh.getInt("id_system_button", 0)
-            main_text.text = main_text_value
-            second_text.text = second_text_value
-            if (id_system_button != 0) {
-                val textView = findViewById<TextView>(id_system_button)
+        val themeChange = sh.getBoolean("theme_change", false)
+        if (themeChange) {
+            val mainTextValue = sh.getString("binding.mainText", "")
+            val secondTextValue = sh.getString("binding.secondText", "")
+            val idSystemButton = sh.getInt("id_system_button", 0)
+            binding.mainText.text = mainTextValue
+            binding.secondText.text = secondTextValue
+            if (idSystemButton != 0) {
+                val textView = findViewById<TextView>(idSystemButton)
                 textView.setBackgroundColor(getColorAttr(R.attr.colorAccentButton))
-                nowSysButton = textView
+                nowOperationButton = textView
             }
             sh.edit()
                 .putBoolean("theme_change", false)
-//                .putString("main_text", "")
-//                .putString("second_text", "")
+//                .putString("binding.mainText", "")
+//                .putString("binding.secondText", "")
 //                .putInt("id_system_button", 0)
                 .apply()
         }
