@@ -13,3 +13,11 @@ fun ContextThemeWrapper.getColorAttr(idColor: Int): Int{
 
 fun AppCompatActivity.isDarkTheme(): Boolean =
     resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
+
+fun Double.isBeautiful(): String{
+    return if (this == 0.0 || this % this.toInt().toDouble() == 0.0 ){
+        this.toInt().toString()
+    }else{
+        this.toString()
+    }
+}

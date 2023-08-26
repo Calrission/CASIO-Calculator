@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import com.example.calculator.common.Expression
 import com.example.calculator.common.Operations
 import com.example.calculator.common.Saver
-import com.example.calculator.common.isDarkTheme
+import com.example.calculator.common.isBeautiful
 import com.example.calculator.models.State
 import com.example.calculator.screens.MainActivity
 
@@ -54,7 +54,7 @@ class MainActivityController(private val activity: MainActivity) {
     fun calc(){
         try {
             if (state.mainText.isNotEmpty()) {
-                val result = expression.calc().isBeautifulResult()
+                val result = expression.calc().isBeautiful()
                 activity.showResultCalc(result)
                 expression.clear()
                 expression.first = result
@@ -64,27 +64,17 @@ class MainActivityController(private val activity: MainActivity) {
         }
     }
 
-    private fun Double.isBeautifulResult(): String{
-        return if (this == 0.0 || this % this.toInt().toDouble() == 0.0 ){
-            this.toInt().toString()
-        }else{
-            this.toString()
-        }
-    }
-
     fun switchThemeMode(){
-        val nowIsDarkTheme = activity.isDarkTheme()
+        val nowIsDarkTheme = activity.isDarkMode
         setThemeMode(!nowIsDarkTheme)
     }
 
     fun setThemeMode(isDarkTheme: Boolean){
+        activity.isDarkMode = isDarkTheme
         if (isDarkTheme)
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
         else
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-        val newState = state
-        newState.isDarkTheme = isDarkTheme
-        saver.saveState(newState)
     }
 
     fun tapDot() {

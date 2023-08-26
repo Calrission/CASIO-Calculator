@@ -14,6 +14,7 @@ import com.google.android.material.snackbar.Snackbar
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    var isDarkMode: Boolean = false
     private var nowOperationButton: TextView? = null
         set(value) {
             if (field != null){
@@ -46,7 +47,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        
+
+        isDarkMode = isDarkTheme()
+
         numButtons.forEach{ btn ->
             btn.setOnClickListener{
                 controller.tapDigit(btn.text.toString().toInt())
@@ -103,7 +106,7 @@ class MainActivity : AppCompatActivity() {
         return State(
             mainText = binding.mainText.text.toString(),
             secondText = binding.secondText.text.toString(),
-            isDarkTheme = isDarkTheme(),
+            isDarkTheme = isDarkMode,
             idOperationButton = nowOperationButton?.id ?: 0
         )
     }
@@ -117,9 +120,10 @@ class MainActivity : AppCompatActivity() {
                 changeSelectOperationButton(textView, true)
                 nowOperationButton = textView
             }
-            val nowDark = isDarkTheme()
-            if (nowDark != state.isDarkTheme)
+            if (isDarkMode != state.isDarkTheme) {
+                isDarkMode = state.isDarkTheme
                 controller.setThemeMode(state.isDarkTheme)
+            }
         }
     }
 
