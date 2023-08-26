@@ -20,9 +20,11 @@
 - ViewBinding
 
 ## 📱 Скриншоты
-![Group 1](https://github.com/Calrission/CASIO-Calculator/assets/95771802/c4e8ebf2-a778-4e1b-84ad-c7e03623ab43)
-![Screenshot 2023-08-26 043012](https://github.com/Calrission/CASIO-Calculator/assets/95771802/37a27884-46a2-4fce-9c31-af975a676b88)
-![Screenshot 2023-08-26 043102](https://github.com/Calrission/CASIO-Calculator/assets/95771802/1e4e56d4-e337-406a-ad43-8eddca1d7585)
+<div>
+<img width="312" alt="image" src=https://github.com/Calrission/CASIO-Calculator/assets/95771802/c4e8ebf2-a778-4e1b-84ad-c7e03623ab43">
+<img width="312" alt="image" src=https://github.com/Calrission/CASIO-Calculator/assets/95771802/37a27884-46a2-4fce-9c31-af975a676b88">
+<img width="312" alt="image" src=https://github.com/Calrission/CASIO-Calculator/assets/95771802/1e4e56d4-e337-406a-ad43-8eddca1d7585">
+</div>
 
 ## 🎥 Демо
 [![Watch the video](https://github.com/Calrission/CASIO-Calculator/assets/95771802/56b4c925-fc1b-4b9d-a112-cc472a0c2ce9)](https://www.youtube.com/watch?v=QGx32SDtySw)
