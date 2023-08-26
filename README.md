@@ -27,5 +27,5 @@
 </div>
 
 ## 🎥 Демо
-[![Watch the video](https://github.com/Calrission/CASIO-Calculator/assets/95771802/56b4c925-fc1b-4b9d-a112-cc472a0c2ce9)](https://www.youtube.com/watch?v=QGx32SDtySw)
+[![Watch the video](https://github-production-user-asset-6210df.s3.amazonaws.com/95771802/263428902-56b4c925-fc1b-4b9d-a112-cc472a0c2ce9.png)](https://www.youtube.com/watch?v=QGx32SDtySw)
 
